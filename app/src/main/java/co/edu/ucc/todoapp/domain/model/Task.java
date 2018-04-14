@@ -9,6 +9,15 @@ public class Task {
     private String id;
     private String name;
     private String uriImage;
+    private boolean done;
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
     public String getId() {
         return id;

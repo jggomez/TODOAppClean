@@ -8,6 +8,15 @@ public class TaskViewModel {
 
     private String name;
     private String uriImage;
+    private boolean done;
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
     public String getName() {
         return name;

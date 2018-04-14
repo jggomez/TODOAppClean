@@ -16,6 +16,7 @@ public class TaskViewModelMapper {
         Task task = new Task();
         task.setName(taskViewModel.getName());
         task.setUriImage(taskViewModel.getUriImage());
+        task.setDone(taskViewModel.isDone());
         return task;
     }
 
@@ -35,6 +36,7 @@ public class TaskViewModelMapper {
         TaskViewModel taskViewModel = new TaskViewModel();
         taskViewModel.setName(task.getName());
         taskViewModel.setUriImage(task.getUriImage());
+        taskViewModel.setDone(task.isDone());
         return taskViewModel;
     }
 
