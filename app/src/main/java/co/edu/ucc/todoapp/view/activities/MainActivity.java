@@ -1,7 +1,7 @@
 package co.edu.ucc.todoapp.view.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,12 +14,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.edu.ucc.todoapp.R;
-import co.edu.ucc.todoapp.domain.usecase.InteractorTask;
+import co.edu.ucc.todoapp.data.entidades.mapper.TaskEntityMapper;
+import co.edu.ucc.todoapp.data.repository.task.TaskDataSourceFactory;
+import co.edu.ucc.todoapp.data.repository.task.TaskRepository;
+import co.edu.ucc.todoapp.domain.usecase.task.AddTaskUseCase;
+import co.edu.ucc.todoapp.domain.usecase.task.GetAllTaskUseCase;
 import co.edu.ucc.todoapp.view.adapters.TaskAdapter;
 import co.edu.ucc.todoapp.view.presenter.IMainPresenter;
 import co.edu.ucc.todoapp.view.presenter.MainPresenter;
 import co.edu.ucc.todoapp.view.viewmodels.TaskViewModel;
 import co.edu.ucc.todoapp.view.viewmodels.mapper.TaskViewModelMapper;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements IMainView {
 
@@ -41,7 +47,22 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         presenter = new MainPresenter(
                 this,
-                new InteractorTask(),
+                new AddTaskUseCase(
+                        Schedulers.io(),
+                        AndroidSchedulers.mainThread(),
+                        new TaskRepository(
+                                new TaskEntityMapper(),
+                                new TaskDataSourceFactory()
+                        )
+                ),
+                new GetAllTaskUseCase(
+                        Schedulers.io(),
+                        AndroidSchedulers.mainThread(),
+                        new TaskRepository(
+                                new TaskEntityMapper(),
+                                new TaskDataSourceFactory()
+                        )
+                ),
                 new TaskViewModelMapper()
         );
 

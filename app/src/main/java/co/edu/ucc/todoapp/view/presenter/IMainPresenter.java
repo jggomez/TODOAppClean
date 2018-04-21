@@ -4,6 +4,4 @@ public interface IMainPresenter {
 
     void addTask(String name);
 
-    void getAllTask();
-
 }
