@@ -17,7 +17,9 @@ import co.edu.ucc.todoapp.R;
 import co.edu.ucc.todoapp.data.entidades.mapper.TaskEntityMapper;
 import co.edu.ucc.todoapp.data.repository.task.TaskDataSourceFactory;
 import co.edu.ucc.todoapp.data.repository.task.TaskRepository;
+import co.edu.ucc.todoapp.domain.usecase.task.AddTaskLocalUseCase;
 import co.edu.ucc.todoapp.domain.usecase.task.AddTaskUseCase;
+import co.edu.ucc.todoapp.domain.usecase.task.GetAllTaskLocalUseCase;
 import co.edu.ucc.todoapp.domain.usecase.task.GetAllTaskUseCase;
 import co.edu.ucc.todoapp.view.adapters.TaskAdapter;
 import co.edu.ucc.todoapp.view.presenter.IMainPresenter;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                         AndroidSchedulers.mainThread(),
                         new TaskRepository(
                                 new TaskEntityMapper(),
-                                new TaskDataSourceFactory()
+                                new TaskDataSourceFactory(getApplicationContext())
                         )
                 ),
                 new GetAllTaskUseCase(
@@ -60,7 +62,23 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                         AndroidSchedulers.mainThread(),
                         new TaskRepository(
                                 new TaskEntityMapper(),
-                                new TaskDataSourceFactory()
+                                new TaskDataSourceFactory(getApplicationContext())
+                        )
+                ),
+                new AddTaskLocalUseCase(
+                        Schedulers.io(),
+                        AndroidSchedulers.mainThread(),
+                        new TaskRepository(
+                                new TaskEntityMapper(),
+                                new TaskDataSourceFactory(getApplicationContext())
+                        )
+                ),
+                new GetAllTaskLocalUseCase(
+                        Schedulers.io(),
+                        AndroidSchedulers.mainThread(),
+                        new TaskRepository(
+                                new TaskEntityMapper(),
+                                new TaskDataSourceFactory(getApplicationContext())
                         )
                 ),
                 new TaskViewModelMapper()
@@ -95,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     @Override
     public void addTask() {
         String descTask = txtDescTask.getText().toString();
-        presenter.addTask(descTask);
+        presenter.addTask(descTask, false);
     }
 
     @Override

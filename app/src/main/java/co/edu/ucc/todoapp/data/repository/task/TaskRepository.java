@@ -31,4 +31,19 @@ public class TaskRepository implements ITaskRepository {
                 .getAll()
                 .map(mapper::map);
     }
+
+    @Override
+    public Observable<Boolean> addTaskLocal(Task task) {
+        ITaskDataSource taskDataSource =
+                factory.createDBDataSource();
+        return taskDataSource.addTask(mapper.reverseMap(task));
+    }
+
+    @Override
+    public Observable<List<Task>> getAllLocal() {
+        ITaskDataSource taskDataSource =
+                factory.createDBDataSource();
+        return taskDataSource.getAll()
+                .map(mapper::map);
+    }
 }

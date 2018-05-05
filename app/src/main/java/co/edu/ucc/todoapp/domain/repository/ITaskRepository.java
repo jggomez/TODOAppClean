@@ -12,4 +12,8 @@ public interface ITaskRepository {
 
     Observable<List<Task>> getAll();
 
+    Observable<Boolean> addTaskLocal(Task task);
+
+    Observable<List<Task>> getAllLocal();
+
 }
