@@ -2,4 +2,16 @@
     <string name="app_name">todoapp</string>
     <string name="hint_add_task">Escribe tu tarea</string>
     <string name="msg_successful">Ok, Added Task</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="settings">Settings</string>
+    <string name="contactenos">Contactenos</string>
+    <string name="acerca">Acerca</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title">New Task</string>
+    <string name="positive">Add</string>
 </resources>

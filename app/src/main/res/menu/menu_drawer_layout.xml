@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/contactar"
+        android:icon="@drawable/ic_baseline_phone_24px"
+        android:title="@string/contactenos"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/acerca"
+        android:icon="@drawable/ic_baseline_announcement_24px"
+        android:title="@string/acerca"
+        app:showAsAction="always" />
+
+
+</menu>
